@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'blog/base.html' %}
 
-<html>
-    <head>
-        <title>Kyle's blog</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-    </head>
-    <body>
-        <div class="page-header">
-            <h1><a href="/">Kyle's Blog</a></h1>
-        </div>
-
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% for post in posts %}
-                        <div class="post">
-                            <div class="date">
-                                <p>published: {{ post.published_date }}</p>
-                            </div>
-                            <h2><a href="">{{ post.title }}</a></h2>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
             </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
