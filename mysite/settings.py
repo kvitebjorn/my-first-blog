@@ -25,7 +25,7 @@ SECRET_KEY = '*+@uvx%jffwk*#9adx$&c7gc5lpj7h-iyx*j+lk%t%i(y@koh9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'www.serialexperimentskyle.com']
 
 LOGIN_REDIRECT_URL = '/'
 
