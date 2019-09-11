@@ -1,5 +1,8 @@
 .page-header {
     background-color: black;
+    /*
+    background: linear-gradient(rgba(10,10,10,.6),rgba(0,0,0,.9)), repeating-linear-gradient(0, transparent, transparent 2px, black 3px, black 3px);
+    */
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -15,7 +18,7 @@
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Muli', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .date {
