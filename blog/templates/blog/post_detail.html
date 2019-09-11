@@ -3,7 +3,13 @@
 {% block metatags %}
   <meta property="og:url"           content="https://www.serialexperimentskyle.com/post/{{ post.pk }}/" />
   <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Kyle's blog | Layer:{{ post.pk }} - {{ post.title }}" />
+  
+  {% if post.pk < 10 %}
+      <meta property="og:title"         content="Kyle's blog | Layer:0{{ post.pk }} - {{ post.title }}" />
+  {% endif %}
+  {% if post.pk > 9 %}
+      <meta property="og:title"         content="Kyle's blog | Layer:{{ post.pk }} - {{ post.title }}" />
+  {% endif %}
 {% endblock %}
 
 {% block content %}
