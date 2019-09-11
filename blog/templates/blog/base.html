@@ -15,6 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     </head>
     <body>
+        <div class="app">
         <div class="page-header">
             {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
@@ -38,5 +39,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </body>
 </html>

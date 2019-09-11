@@ -1,3 +1,14 @@
+.app {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+    background:linear-gradient(rgba(10,10,10,.6),rgba(0,0,0,.9)), repeating-linear-gradient(0, transparent, transparent 2px, black 3px, black 3px), url("/static/images/glitch_bg.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	background-position: center;
+}
+
 .page-header {
     background-color: black;
     /*
