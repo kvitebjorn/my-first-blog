@@ -82,6 +82,9 @@ th {
     background: -webkit-linear-gradient(dimgray, rgb(100,220,220));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-shadow: 0 0 32px white;
+    color: transparent;
 }
 
 .comment {
