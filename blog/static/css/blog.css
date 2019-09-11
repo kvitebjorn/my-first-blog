@@ -18,6 +18,7 @@ html, body {
     background-color: black;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
+    overflow: auto;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -322,12 +323,11 @@ h1, h2, h3, h4 {
 
 .title-wrapper {
     display: inline-block;
-
 }
 
 .title-wrapper p {
     text-align: right;
-    padding-right: 20%;
+    margin-right: 20%;
 }
 
 .menu-wrapper {
