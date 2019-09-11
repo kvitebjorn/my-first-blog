@@ -1,5 +1,9 @@
 {% extends 'blog/base.html' %}
 
+{% block titletag %}
+  <title>Kyle's blog</title>
+{% endblock %}
+
 {% block content %}
     {% for post in posts %}
         <div class="post">

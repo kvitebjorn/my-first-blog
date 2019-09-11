@@ -12,6 +12,15 @@
   {% endif %}
 {% endblock %}
 
+{% block titletag %}
+  {% if post.pk < 10 %}
+      <title>Kyle's blog | Layer:0{{ post.pk }} - {{ post.title }}</title>
+  {% endif %}
+  {% if post.pk > 9 %}
+      <title>Kyle's blog | Layer:{{ post.pk }} - {{ post.title }}</title>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
     <div class="post">
@@ -30,16 +39,6 @@
         
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
-        
-        <!-- update this page's title -->
-        <script>(function(d, id, post_title) {
-          if(id.toString().length == 1) {
-              id = "0" + id;
-          }
-          var new_title = "Kyle's blog | Layer:" + id + " - " + post_title;
-          d.title = new_title;
-          <!--d.querySelector('meta[property="og:title"]').setAttribute("content", new_title);-->
-        }(document, "{{ post.pk }}", "{{ post.title }}"));</script>
         
         <!-- Load Facebook SDK for JavaScript -->
           <div id="fb-root"></div>
