@@ -78,6 +78,12 @@ th {
     color: gray;
 }
 
+.post h1 {
+    background: -webkit-linear-gradient(dimgray, rgb(100,220,220));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .comment {
     margin: 20px 0px 20px 20px;
 }
