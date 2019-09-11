@@ -26,17 +26,17 @@ with open(SECRET_KEY_PATH) as f:
    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'www.serialexperimentskyle.com']
 
 LOGIN_REDIRECT_URL = '/'
 
 # Uncomment for production
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-X_FRAME_OPTIONS = 'DENY'
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
+#X_FRAME_OPTIONS = 'DENY'
 
 
 # Application definition

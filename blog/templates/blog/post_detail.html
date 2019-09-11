@@ -5,19 +5,19 @@
   <meta property="og:type"          content="website" />
   
   {% if post.pk < 10 %}
-      <meta property="og:title"         content="Kyle's blog | Layer:0{{ post.pk }} - {{ post.title }}" />
+      <meta property="og:title"         content="Serial Experiments Kyle | Layer:0{{ post.pk }} - {{ post.title }}" />
   {% endif %}
   {% if post.pk > 9 %}
-      <meta property="og:title"         content="Kyle's blog | Layer:{{ post.pk }} - {{ post.title }}" />
+      <meta property="og:title"         content="Serial Experiments Kyle | Layer:{{ post.pk }} - {{ post.title }}" />
   {% endif %}
 {% endblock %}
 
 {% block titletag %}
   {% if post.pk < 10 %}
-      <title>Kyle's blog | Layer:0{{ post.pk }} - {{ post.title }}</title>
+      <title>Serial Experiments Kyle | Layer:0{{ post.pk }} - {{ post.title }}</title>
   {% endif %}
   {% if post.pk > 9 %}
-      <title>Kyle's blog | Layer:{{ post.pk }} - {{ post.title }}</title>
+      <title>Serial Experiments Kyle | Layer:{{ post.pk }} - {{ post.title }}</title>
   {% endif %}
 {% endblock %}
 
