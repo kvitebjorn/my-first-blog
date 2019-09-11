@@ -8,10 +8,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-}
-
-html, body {
-    height: 100vh;
+	overflow-y: scroll;
 }
 
 .page-header {
