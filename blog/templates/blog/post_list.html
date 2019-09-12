@@ -10,6 +10,9 @@
             <div class="date">
                 <span>{{ post.published_date }}</span>
             </div>
+            <div class="post_icon">
+                <i class="material-icons-outlined">{{ post.outlined_material_icon_name }}</i>
+            </div>
         </div>
         <div class="post">
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>

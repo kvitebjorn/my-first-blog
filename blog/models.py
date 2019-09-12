@@ -9,6 +9,7 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    outlined_material_icon_name = models.CharField(max_length=200)
 
     def publish(self):
         self.published_date = timezone.now()

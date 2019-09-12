@@ -28,6 +28,9 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
+            <div class="post_icon">
+                <i class="material-icons-outlined">{{ post.outlined_material_icon_name }}</i>
+            </div>
         {% else %}
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}

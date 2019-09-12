@@ -8,6 +8,9 @@
     {% for post in posts %}
         <div class="post-side-bar">
             <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
+            <div class="post_icon">
+                <i class="material-icons-outlined">{{ post.outlined_material_icon_name }}</i>
+            </div>
         </div>
         <div class="post">
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
