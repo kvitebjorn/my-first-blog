@@ -42,7 +42,7 @@
     </div>
     <div class="post">        
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p>{{ post.formatted_markdown|safe }}</p>
         
         <!-- Load Facebook SDK for JavaScript -->
           <div id="fb-root"></div>
