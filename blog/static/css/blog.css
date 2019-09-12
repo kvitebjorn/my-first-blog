@@ -24,10 +24,25 @@
     text-decoration: none;
 }
 
-.content {
+.content container {
     margin-left: 5%;
     margin-right: 5%:
     width: 100%;
+    text-align: center;
+}
+
+.row {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.col-md-8 {
+    display: inline-block;
+    text-align: center;
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 h1, h2, h3, h4 {
@@ -67,7 +82,15 @@ th {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 80%;
+    border: 3px solid ghostwhite;
+    border-radius: 9px;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .post h1 a, .post h1 a:visited {
@@ -83,8 +106,23 @@ th {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    text-shadow: 0 0 32px white;
+    text-shadow: 0 0 32px ghostwhite;
     color: transparent;
+    padding-bottom: 15px;
+}
+
+.post-comments {
+    padding-top: 15px;
+    text-align: right;
+}
+
+.post-side-bar {
+    text-align: right;
+    text-wrap: balance;
+    display: inline-block;
+    width: 20%;
+    float: left;
+    padding-right: 10px;
 }
 
 .comment {

@@ -6,13 +6,17 @@
 
 {% block content %}
     {% for post in posts %}
-        <div class="post">
+        <div class="post-side-bar">
             <div class="date">
-                published: {{ post.published_date }}
+                <span>{{ post.published_date }}</span>
             </div>
+        </div>
+        <div class="post">
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
-            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+            <div class="post-comments">
+                <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
