@@ -28,18 +28,15 @@
     margin-left: 5%;
     margin-right: 5%:
     width: 100%;
-    text-align: center;
 }
 
 .row {
     display: inline-block;
-    text-align: left;
     width: 100%;
 }
 
 .col-md-8 {
     display: inline-block;
-    text-align: center;
     width: 70%;
     margin-left: 10%;
     margin-right: 10%;
@@ -127,6 +124,14 @@ th {
 
 .comment {
     margin: 20px 0px 20px 20px;
+    text-align: left;
+}
+
+.fb-share-button {
+    float: right;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 10px;
 }
 
 .sub {

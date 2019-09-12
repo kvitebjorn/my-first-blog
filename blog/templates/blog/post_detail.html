@@ -23,7 +23,7 @@
 
 {% block content %}
 
-    <div class="post">
+    <div class="post-side-bar">
         {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
@@ -36,7 +36,8 @@
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
-        
+    </div>
+    <div class="post">        
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
         
@@ -51,7 +52,7 @@
           }(document, 'script', 'facebook-jssdk'));</script>
         
           <!-- Your share button code -->
-          <div class="fb-share-button" 
+          <div class="fb-share-button"
             data-href="https://www.serialexperimentskyle.com/post/{{ post.pk }}" 
             data-layout="button">
           </div>
