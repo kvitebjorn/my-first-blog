@@ -1,1 +1,2 @@
 Django~=2.0.6
+django-markdownx~=2.0.28
