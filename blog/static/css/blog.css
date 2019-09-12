@@ -88,6 +88,13 @@ th {
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.post iframe {
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .post h1 a, .post h1 a:visited {
