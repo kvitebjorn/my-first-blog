@@ -26,8 +26,8 @@
 }
 
 .content container {
-    margin-left: 5%;
-    margin-right: 5%:
+    margin-left: 2%;
+    margin-right: 2%:
     width: 100%;
 }
 
@@ -38,9 +38,9 @@
 
 .col-md-8 {
     display: inline-block;
-    width: 70%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 75%;
+    margin-left: 5%;
+    margin-right: 5%;
     min-width: 350px;
 }
 
