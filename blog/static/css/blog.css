@@ -424,6 +424,7 @@ th {
 
 .title-wrapper {
     display: inline-block;
+    overflow-wrap: break-word;
 }
 
 .title-wrapper p {
