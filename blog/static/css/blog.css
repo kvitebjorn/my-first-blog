@@ -155,6 +155,10 @@ th {
     max-width: 100%;
 }
 
+.comment summary:hover {
+    cursor: pointer;
+}
+
 .fb-share-button {
     float: right;
     padding-right: 10px;
