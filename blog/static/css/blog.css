@@ -16,6 +16,7 @@
     margin-top: 0;
     padding: 20px 20px 20px 40px;
     overflow: auto;
+    width: 100%;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -425,6 +426,8 @@ th {
 .title-wrapper {
     display: inline-block;
     overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: auto;
 }
 
 .title-wrapper p {
@@ -435,6 +438,7 @@ th {
 .menu-wrapper {
     display: inline-block;
     float: right;
+    width: auto%;
 }
 
 .content container {
