@@ -2,6 +2,7 @@
 
 {% block metatags %}
   <meta property="og:url"           content="https://www.serialexperimentskyle.com/post/{{ post.pk }}/" />
+  <meta property="og:type"          content="article" />
   
   {% if post.pk < 10 %}
       <meta property="og:title"         content="Serial Experiments Kyle | Layer:0{{ post.pk }} - {{ post.title }}" />
