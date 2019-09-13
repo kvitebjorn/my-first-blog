@@ -92,9 +92,17 @@ th {
 }
 
 .post iframe {
-  top: 0;
-  left: 0;
-  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .post h1 a, .post h1 a:visited {
@@ -132,6 +140,15 @@ th {
 .comment {
     margin: 20px 0px 20px 20px;
     text-align: left;
+    width: 100%;
+}
+
+.comment iframe {
+    max-width: 100%;
+}
+
+.comment img {
+    max-width: 100%;
 }
 
 .fb-share-button {
