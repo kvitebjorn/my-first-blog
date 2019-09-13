@@ -428,6 +428,7 @@ th {
     overflow-wrap: break-word;
     word-wrap: break-word;
     width: auto;
+    margin-right: 5%;
 }
 
 .title-wrapper p {
