@@ -77,6 +77,10 @@ th {
     color: ghostwhite;
 }
 
+input {
+    color: black;
+}
+
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     float: right;

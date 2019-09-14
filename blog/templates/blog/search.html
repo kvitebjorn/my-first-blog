@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+
+{% block titletag %}
+  <title>Serial Experiments Kyle | search</title>
+{% endblock %}
+
+{% block content %}
+    <form method="get">
+        <h4>search: <input type="text" name="term"></h4>
+    </form>
+    
+    <br>
+    
+    {% for post in posts %}
+        <div class="post-side-bar">
+            <div class="date">
+                <span>{{ post.published_date }}</span>
+            </div>
+            <div class="post_icon">
+                <i class="material-icons-outlined">{{ post.outlined_material_icon_name }}</i>
+            </div>
+        </div>
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>
+                {% with postbody=post.formatted_markdown|safe %}
+                    {{postbody|truncatechars_html:200}}
+                {% endwith %}
+            </p>
+            <div class="post-comments">
+                <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+            </div>
+        </div>
+        {% empty %}
+            {% if term != "" %}
+                <p>No results found for <b>{{term}}</b></p>
+            {% endif %}
+    {% endfor %}
+
+{% endblock %}

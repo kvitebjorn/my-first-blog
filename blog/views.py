@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post, Comment
@@ -50,6 +51,17 @@ def post_draft_list(request):
 def archive_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/archive_list.html', {'posts': posts})
+
+def search(request):
+    search_term = ""
+    if ('term' in request.GET) and request.GET['term'].strip():
+        search_term = request.GET['term']
+    posts = []
+    if search_term != "":
+        posts = Post.objects.filter(
+                    Q(text__contains=search_term) | 
+                    Q(title__contains=search_term)).order_by('-published_date')
+    return render(request, 'blog/search.html', {'posts': posts, 'term':search_term})
 
 @login_required
 def post_publish(request, pk):
