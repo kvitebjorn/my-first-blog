@@ -175,7 +175,8 @@ th {
 }
 
 .glitch {
-  display: inline;
+  width: 100%;
+  display: inline-block;
   position: relative;
   color: white;
   font-size: 4em;
