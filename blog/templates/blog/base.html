@@ -29,8 +29,11 @@
                 
                 <div class="menu-wrapper">
                 {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                    <a href="{% url 'admin:index' %}" class="top-menu"><span class="glyphicon glyphicon-cog"></span></a>
                     <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
                     <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+                    {% endif %}
                     <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list"></span></a>
                     <p class="top-menu">Hello, {{ user.username }}! <small>(<a href="{% url 'logout' %}">logout</a>)</small></p>
                 {% else %}
