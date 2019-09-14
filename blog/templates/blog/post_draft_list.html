@@ -18,5 +18,8 @@
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.formatted_markdown|safe|truncatechars:200 }}</p>
         </div>
+        
+    {% empty %}
+        <p>No drafts</p>
     {% endfor %}
 {% endblock %}
