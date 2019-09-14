@@ -59,8 +59,9 @@ def search(request):
     posts = []
     if search_term != "":
         posts = Post.objects.filter(
-                    Q(text__contains=search_term) | 
-                    Q(title__contains=search_term)).order_by('-published_date')
+                    Q(published_date__lte=timezone.now()) &
+                    ( Q(text__contains=search_term) | 
+                      Q(title__contains=search_term))).order_by('-published_date')
     return render(request, 'blog/search.html', {'posts': posts, 'term':search_term})
 
 @login_required
