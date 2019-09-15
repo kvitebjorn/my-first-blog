@@ -73,13 +73,18 @@ def subscribe(request):
     if request.method == "POST":
         form = SubscriptionForm(request.POST)
         if form.is_valid():
-            try:
-                subscription = form.save(commit=False)
-                validate_email(subscription.email)
-                subscription.save()
-                email_address = subscription.email
-            except:
-                email_address = "invalid email address"
+            subscription = form.save(commit=False)
+            
+            # Check if they're already subscribed
+            email_address = subscription.email
+            subscribers = Subscription.objects.filter(email=email_address)
+            
+            if len(subscribers) < 1:
+                try:                
+                    validate_email(subscription.email)
+                    subscription.save()
+                except:
+                    email_address = "invalid email address"
                 
     else:
         form = SubscriptionForm()
@@ -93,6 +98,7 @@ def post_publish(request, pk):
     
     # Send a notification email to all subscribers
     recipients = [subscriber.email for subscriber in Subscription.objects.all()]
+    recipients = list(set(recipients))
     title = 'New post!'
     body = "\'" + post.title + "\'" + "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/"
     sender = 'kyle@serialexperimentskyle.com'
