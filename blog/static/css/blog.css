@@ -44,7 +44,7 @@
     min-width: 350px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family: 'Montserrat', sans-serif;
     color: rgb(100,220,220);
 }
@@ -71,6 +71,13 @@ li {
 
 .post-form textarea, .post-form input {
     width: 100%;
+}
+
+.subscription-form textarea, .subscription-form input {
+    width: 50%;
+}
+.subscription-form submit-btn {
+    float: left;
 }
 
 th {

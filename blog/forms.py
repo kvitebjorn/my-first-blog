@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post, Comment
+from .models import Post, Comment, Subscription
 
 class PostForm(forms.ModelForm):
 
@@ -13,3 +13,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('author', 'text',)
+
+class SubscriptionForm(forms.ModelForm):
+    
+    class Meta:
+        model = Subscription
+        fields = ('email',)

@@ -2,8 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from django.core.validators import validate_email
+from django.core.mail import send_mail
+
+from .models import Post, Comment, Subscription
+from .forms import PostForm, CommentForm, SubscriptionForm
 
 # Create your views here.
 
@@ -64,10 +67,37 @@ def search(request):
                       Q(title__contains=search_term))).order_by('-published_date')
     return render(request, 'blog/search.html', {'posts': posts, 'term':search_term})
 
+def subscribe(request):
+    email_address = ""
+    
+    if request.method == "POST":
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            try:
+                subscription = form.save(commit=False)
+                validate_email(subscription.email)
+                subscription.save()
+                email_address = subscription.email
+            except:
+                email_address = "invalid email address"
+                
+    else:
+        form = SubscriptionForm()
+        
+    return render(request, 'blog/subscribe.html', {'form': form, 'email_address':email_address})
+
 @login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
+    
+    # Send a notification email to all subscribers
+    recipients = [subscriber.email for subscriber in Subscription.objects.all()]
+    title = 'New post!'
+    body = "\'" + post.title + "\'" + "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/"
+    sender = 'kyle@serialexperimentskyle.com'
+    send_mail(title, body, sender, recipients)
+    
     return redirect('post_detail', pk=pk)
 
 @login_required

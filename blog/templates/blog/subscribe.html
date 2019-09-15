@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block titletag %}
+  <title>Serial Experiments Kyle | subscribe</title>
+{% endblock %}
+
+{% block content %}
+    <p>Want to subscribe by e-mail?</p>
+    <form method="POST" class="subscription-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">subscribe</button>
+    </form>
+    
+    <br>
+    
+    {% if email_address != "" and email_address != "invalid email address" %}
+        <p>Thanks for subscribing <b>{{email_address}}</b>!</p>
+    {% endif %}
+    {% if email_address == "invalid email address" %}
+        <p>Invalid email address. Please double-check your input.</p>
+    {% endif %}
+    
+{% endblock %}

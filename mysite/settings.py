@@ -148,3 +148,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD_PATH = os.path.join(ETC_ROOT, 'email_apikey.txt')
+with open(EMAIL_HOST_PASSWORD_PATH) as f:
+   EMAIL_HOST_PASSWORD = f.read().strip()
+EMAIL_USE_TLS = True
+

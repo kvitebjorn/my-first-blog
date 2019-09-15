@@ -44,3 +44,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class Subscription(models.Model):
+    email = models.EmailField(max_length=256)
+    subscribed_date = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return self.email
