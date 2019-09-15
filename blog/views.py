@@ -110,8 +110,8 @@ def post_publish(request, pk):
     datatuple = []
     for recipient in recipients:
         subscription = get_object_or_404(Subscription, email=recipient);
-        title = 'New post!'
-        body = ("\'" + post.title + "\'" + 
+        title = post.title
+        body = ("New post \'" + post.title + "\'" + 
                 "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/" +
                 "\n\n\nDon't want to get these notifications anymore? click here: "+
                 subscription.create_unsubscribe_link())
