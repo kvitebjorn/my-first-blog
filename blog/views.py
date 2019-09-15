@@ -69,27 +69,25 @@ def search(request):
 
 def subscribe(request):
     email_address = ""
+    status = ""
     
     if request.method == "POST":
         form = SubscriptionForm(request.POST)
         if form.is_valid():
+            form.clean_email()
             subscription = form.save(commit=False)
-            
-            # Check if they're already subscribed
             email_address = subscription.email
-            subscribers = Subscription.objects.filter(email=email_address)
             
-            if len(subscribers) < 1:
-                try:                
-                    validate_email(subscription.email)
-                    subscription.save()
-                except:
-                    email_address = "invalid email address"
+            try:                
+                validate_email(email_address)
+                subscription.save()
+            except:
+                status = "invalid"
                 
     else:
         form = SubscriptionForm()
         
-    return render(request, 'blog/subscribe.html', {'form': form, 'email_address':email_address})
+    return render(request, 'blog/subscribe.html', {'form': form, 'email_address':email_address, 'status':status})
 
 def unsubscribe(request, email, token):
     subscription = get_object_or_404(Subscription, email=email);

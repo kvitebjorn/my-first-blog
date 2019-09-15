@@ -13,10 +13,10 @@
     
     <br>
     
-    {% if email_address != "" and email_address != "invalid email address" %}
+    {% if email_address != "" and status != "invalid" %}
         <p>Thanks for subscribing <b>{{email_address}}</b>!</p>
     {% endif %}
-    {% if email_address == "invalid email address" %}
+    {% if status == "invalid" %}
         <p>Invalid email address. Please double-check your input.</p>
     {% endif %}
     

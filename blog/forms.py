@@ -19,3 +19,6 @@ class SubscriptionForm(forms.ModelForm):
     class Meta:
         model = Subscription
         fields = ('email',)
+
+    def clean_email(self):
+        return self.cleaned_data['email'].lower()
