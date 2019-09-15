@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.validators import validate_email
-from django.core.mail import send_mail
+from django.core.mail import send_mass_mail
 
 from .models import Post, Comment, Subscription
 from .forms import PostForm, CommentForm, SubscriptionForm
@@ -99,10 +99,14 @@ def post_publish(request, pk):
     # Send a notification email to all subscribers
     recipients = [subscriber.email for subscriber in Subscription.objects.all()]
     recipients = list(set(recipients))
-    title = 'New post!'
-    body = "\'" + post.title + "\'" + "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/"
-    sender = 'kyle@serialexperimentskyle.com'
-    send_mail(title, body, sender, recipients)
+    datatuple = []
+    for recipient in recipients:
+        title = 'New post!'
+        body = "\'" + post.title + "\'" + "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/"
+        sender = 'kyle@serialexperimentskyle.com'
+        this_tuple = (title, body, sender, [recipient])
+        datatuple.append(this_tuple)
+    send_mass_mail(tuple(datatuple))
     
     return redirect('post_detail', pk=pk)
 
