@@ -29,23 +29,23 @@
                 
                 <div class="menu-wrapper">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
+                    <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-log-out" title="logout"></span></a>
                     
                     {% if user.is_staff %}
-                    <a href="{% url 'admin:index' %}" class="top-menu"><span class="glyphicon glyphicon-cog"></span></a>
-                    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="{% url 'admin:index' %}" class="top-menu"><span class="glyphicon glyphicon-cog" title="admin"></span></a>
+                    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus" title="new post"></span></a>
+                    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit" title="drafts"></span></a>
                     {% endif %}
                     
-                    <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list"></span></a>
-                    <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search"></span></a>
-                    <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send"></span></a>
+                    <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
+                    <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search" title="search"></span></a>
+                    <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send" title="subscribe"></span></a>
                     <p class="top-menu">Hello, {{ user.username }}! </p>
                 {% else %}
-                    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in"></span></a>
-                    <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list"></span></a>
-                    <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search"></span></a>
-                    <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send"></span></a>
+                    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in" title="login"></span></a>
+                    <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
+                    <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search" title="search"></span></a>
+                    <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send" title="subscribe"></span></a>
                 {% endif %}
                 </div>
             </div>
