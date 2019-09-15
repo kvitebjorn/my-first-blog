@@ -91,6 +91,16 @@ def subscribe(request):
         
     return render(request, 'blog/subscribe.html', {'form': form, 'email_address':email_address})
 
+def unsubscribe(request, email, token):
+    subscription = get_object_or_404(Subscription, email=email);
+    valid_token = subscription.check_token(token)
+    if valid_token:
+        unsubscribed_email = email
+        subscription.delete()
+    else:
+        unsubscribed_email = "invalid token"
+    return render(request, 'blog/unsubscribe.html', {'email':unsubscribed_email})
+
 @login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -101,8 +111,12 @@ def post_publish(request, pk):
     recipients = list(set(recipients))
     datatuple = []
     for recipient in recipients:
+        subscription = get_object_or_404(Subscription, email=recipient);
         title = 'New post!'
-        body = "\'" + post.title + "\'" + "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/"
+        body = ("\'" + post.title + "\'" + 
+                "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/" +
+                "\n\n\nDon't want to get these notifications anymore? click here: "+
+                subscription.create_unsubscribe_link())
         sender = 'kyle@serialexperimentskyle.com'
         this_tuple = (title, body, sender, [recipient])
         datatuple.append(this_tuple)

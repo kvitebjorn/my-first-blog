@@ -10,6 +10,7 @@ urlpatterns = [
     path('archive/', views.archive_list, name='archive_list'),
     path('search/', views.search, name='search'),
     path('subscribe/', views.subscribe, name='subscribe'),
+    path('unsubscribe/<email>/<token>', views.unsubscribe, name='unsubscribe'),
     path('post/<pk>/publish/', views.post_publish, name='post_publish'),
     path('post/<pk>/remove/', views.post_remove, name='post_remove'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),

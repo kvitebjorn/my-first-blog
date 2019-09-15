@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block titletag %}
+  <title>Serial Experiments Kyle | unsubscribe</title>
+{% endblock %}
+
+{% block content %}
+    {% if email != "invalid token" %}
+        <p><b>{{email}}</b> has been unsubscribed.</p>
+    {% else %}
+        <p>Invalid token. Unable to unsubscribe.</p>
+    {% endif %}
+    
+{% endblock %}

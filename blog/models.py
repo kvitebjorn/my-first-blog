@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
+from django.urls import reverse
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 
@@ -46,8 +48,24 @@ class Comment(models.Model):
         return self.text
 
 class Subscription(models.Model):
-    email = models.EmailField(max_length=256)
+    email = models.EmailField(max_length=256, unique=True)
     subscribed_date = models.DateTimeField(default=timezone.now)
+    
+    def create_unsubscribe_link(self):
+        email, token = self.make_token().split(":", 1)
+        return reverse('unsubscribe',
+                       kwargs={'email': email, 'token': token,})
+    
+    def make_token(self):
+        return TimestampSigner().sign(self.email)
+    
+    def check_token(self, token):
+        try:
+            key = '%s:%s' % (self.email, token)
+            TimestampSigner().unsign(key, max_age=60 * 60 * 48) # Valid for 2 days
+        except (BadSignature, SignatureExpired):
+            return False
+        return True
     
     def __str__(self):
         return self.email
