@@ -1,3 +1,4 @@
 Django~=2.0.6
 django-markdownx~=2.0.28
 django-axes~=5.0.13
+pygments~=2.4.2
