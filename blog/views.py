@@ -106,9 +106,9 @@ def post_publish(request, pk):
     
     # Send a notification email to all subscribers
     sender = 'kyle@serialexperimentskyle.com'
+    title = post.title
     datatuple = []
     for subscription in Subscription.objects.all():
-        title = post.title
         body = ("New post \'" + post.title + "\'" + 
                 "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/" +
                 "\n\n\nDon't want to get these notifications anymore? click here: " +
