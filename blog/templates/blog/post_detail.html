@@ -59,7 +59,38 @@
             data-href="https://www.serialexperimentskyle.com/post/{{ post.pk }}" 
             data-layout="button">
           </div>
-        
+          
+        <!-- Copy link button -->
+        <div class="copy-link-button">
+            <i class="material-icons-outlined" id="copy-link-button">link</i>
+        </div>
+        <script>        
+            function flash_copy() {
+              var a;
+              a = document.getElementById("copy-link-button");
+              original_color = a.style.color;
+              a.style.color = "ghostwhite";
+              a.style.animation = "bounce 0.25s"; 
+              setTimeout(function () {
+                  a.style.color = original_color
+                  a.style.animation = "";
+                }, 250);
+            }
+             
+            function copy_link() {
+                var textArea = document.createElement("textarea");
+                textArea.value = window.location.href;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("Copy");
+                textArea.remove();
+                flash_copy();
+            }
+        </script>
+        <script>(function(d) {
+               d.getElementById("copy-link-button").addEventListener("click", copy_link);
+           }(document));
+        </script>
     </div>
     
     <hr>
