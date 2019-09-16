@@ -105,19 +105,16 @@ def post_publish(request, pk):
     post.publish()
     
     # Send a notification email to all subscribers
-    recipients = [subscriber.email for subscriber in Subscription.objects.all()]
-    recipients = list(set(recipients))
+    sender = 'kyle@serialexperimentskyle.com'
     datatuple = []
-    for recipient in recipients:
-        subscription = get_object_or_404(Subscription, email=recipient);
+    for subscription in Subscription.objects.all():
         title = post.title
         body = ("New post \'" + post.title + "\'" + 
                 "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/" +
                 "\n\n\nDon't want to get these notifications anymore? click here: " +
                 "https://www.serialexperimentskyle.com" +
                 subscription.create_unsubscribe_link())
-        sender = 'kyle@serialexperimentskyle.com'
-        this_tuple = (title, body, sender, [recipient])
+        this_tuple = (title, body, sender, [subscription.email])
         datatuple.append(this_tuple)
     send_mass_mail(tuple(datatuple))
     
