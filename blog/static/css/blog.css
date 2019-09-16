@@ -446,8 +446,7 @@ input {
     overflow-wrap: break-word;
     word-wrap: break-word;
     margin-right: 5%;
-    margin-bottom: 2%;
-    width: calc(100% - 2%);
+    width: 100%;
 }
 
 .title-wrapper p {
@@ -458,7 +457,7 @@ input {
 .menu-wrapper {
     display: inline-block;
     float: right;
-    width: auto%;
+    width: 100%
 }
 
 .content container {
