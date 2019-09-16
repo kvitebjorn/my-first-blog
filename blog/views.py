@@ -113,7 +113,8 @@ def post_publish(request, pk):
         title = post.title
         body = ("New post \'" + post.title + "\'" + 
                 "\n\nCheck it out here:\nhttps://www.serialexperimentskyle.com/post/" + pk + "/" +
-                "\n\n\nDon't want to get these notifications anymore? click here: "+
+                "\n\n\nDon't want to get these notifications anymore? click here: " +
+                "https://www.serialexperimentskyle.com" +
                 subscription.create_unsubscribe_link())
         sender = 'kyle@serialexperimentskyle.com'
         this_tuple = (title, body, sender, [recipient])
