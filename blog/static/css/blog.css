@@ -15,7 +15,7 @@
     background-color: black;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
-    overflow: auto;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -442,15 +442,17 @@ input {
 
 .title-wrapper {
     display: inline-block;
+    position: relative;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    width: auto;
     margin-right: 5%;
+    margin-bottom: 2%;
+    width: calc(100% - 2%);
 }
 
 .title-wrapper p {
-    text-align: right;
-    margin-right: 20%;
+    text-align: center;
+    padding-left: 15%;
 }
 
 .menu-wrapper {
@@ -553,15 +555,17 @@ input {
 }
 
 
-.glitch-img {
-    position: absolute;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 1;
-    overflow-y: scroll;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
+/* glitch elem must have absolute position */
+ .glitch-img {
+   position: absolute; 
+   width : 100%; 
+   height : 100%; 
+   top: 0 ; 
+   left : 0; 
+   background-position:center;  
+   -moz-background-size:cover;
+   -o-background-size:cover;
+   -webkit-background-size:cover;
+   background-size:cover;
+   opacity : 1
+ } 

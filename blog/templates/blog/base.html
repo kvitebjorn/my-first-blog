@@ -26,11 +26,15 @@
             <div class="page-header">
             
                 <div class="title-wrapper">
-                    <a href="/">
-                        <div><h1 class="glitch" data-text="serial experiments">serial experiments</h1></div>
-                        <div><p class="sub"><b>kyle</b></p></div>
-                    </a>
+                    <div class="glitch-img">
+                        <a href="/">
+                            <div><h1 class="glitch" data-text="serial experiments">serial experiments</h1></div>
+                            <div><p class="sub"><b>kyle</b></p></div>
+                        </a>
+                    </div>
                 </div>
+                
+                <div id="spacer" style="width: 200px; height: 75px; float:left; display:block"></div>
                 
                 <div class="menu-wrapper">
                 {% if user.is_authenticated %}
@@ -67,18 +71,27 @@
         </div>
     
         <script type="text/javascript">
-            $(function() {
-              $(".glitch-img").mgGlitch({
-                  destroy: false,
-                  glitch: true,
-                  scale: false,
-                  blend: true,
-                  blendModeType: 'hue',
-                  glitch1TimeMin: 10000,
-                  glitch1TimeMax: 500,
-                  glitch2TimeMin: 100,
-                  glitch2TimeMax: 100,
-              });
+            $( function() {
+        		$( ".glitch-img" ).mgGlitch({
+                  // set 'true' to stop the plugin
+        		  destroy : false, 
+                  // set 'false' to stop glitching
+                  glitch: true, 
+                  // set 'false' to stop scaling
+                  scale: true, 
+                  // set 'false' to stop glitch blending
+                  blend : true, 
+                  // select blend mode type
+                  blendModeType : 'hue',
+                  // set min time for glitch 1 elem
+                  glitch1TimeMin : 200, 
+                  // set max time for glitch 1 elem
+                  glitch1TimeMax : 400,
+                  // set min time for glitch 2 elem
+                  glitch2TimeMin : 10, 
+                  // set max time for glitch 2 elem
+                  glitch2TimeMax : 100, 
+        		});
             });
         </script>
     </body>
