@@ -27,8 +27,12 @@
             <div class="post-comments">
                 <a href="{% url 'post_detail' pk=post.pk %}">
                     Comments: {{ post.approved_comments.count }}
-                    {% if user.is_authenticated and post.author == user and post.unapproved_comments.count > 0 %}
-                        <span class="unapproved_comments"> ({{ post.unapproved_comments.count }})<span>
+                    {% if user.is_authenticated %}
+                      {% if post.author == user or user.is_staff %}
+                        {% if post.unapproved_comments.count > 0 %}
+                            <span class="unapproved_comments"> ({{ post.unapproved_comments.count }})<span>
+                        {% endif %}
+                      {% endif %}
                     {% endif %}
                 </a>
             </div>
