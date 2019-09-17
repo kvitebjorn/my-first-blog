@@ -34,6 +34,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     author = models.CharField(max_length=200)
     text = MarkdownxField()
     created_date = models.DateTimeField(default=timezone.now)

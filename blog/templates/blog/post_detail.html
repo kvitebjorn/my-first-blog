@@ -109,7 +109,11 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <strong>{{ comment.author }}</strong>
+            {% if comment.user %}
+                <span class="user_comment_author"><strong>{{ comment.author }}</strong></span>
+            {% else %}
+                <strong>{{ comment.author }}</strong>
+            {% endif %}
             <p>{{ comment.formatted_markdown|safe }}</p>
         </div>
         {% endif %}

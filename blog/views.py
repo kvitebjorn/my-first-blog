@@ -135,14 +135,25 @@ def post_remove(request, pk):
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        if not request.user.is_authenticated:
+            form = CommentForm(request.POST, user=request.user)
+        else:
+            form = CommentForm(request.POST)
+            
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            
+            if request.user.is_authenticated:
+                comment.user = request.user
+            
             comment.save()
             return redirect('post_detail', pk=post.pk)
     else:
-        form = CommentForm()
+        if not request.user.is_authenticated:
+            form = CommentForm()
+        else:
+            form = CommentForm(user=request.user)
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 @login_required

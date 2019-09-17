@@ -601,3 +601,7 @@ input {
     text-align: right;
     float: right;
 }
+
+.user_comment_author {
+    color: rgb(100,220,220);
+}

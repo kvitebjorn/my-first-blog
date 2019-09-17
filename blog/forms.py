@@ -19,8 +19,18 @@ class CommentForm(forms.ModelForm):
         fields = ('author', 'text',)
         
     def __init__(self, *args, **kwargs):
+        if 'user' in kwargs:
+            self.user = kwargs.pop('user')
+        else:
+            self.user = None
         super(CommentForm, self).__init__(*args, **kwargs)
-        self.fields['author'].widget.attrs['autofocus']  = 'on'
+        
+        if self.user != None:
+            self.fields['author'].widget.attrs['value']  = self.user
+            self.fields['author'].widget.attrs['readonly']  = True
+            self.fields['text'].widget.attrs['autofocus']  = 'on'
+        else:
+            self.fields['author'].widget.attrs['autofocus']  = 'on'
 
 class SubscriptionForm(forms.ModelForm):
     
