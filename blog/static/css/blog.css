@@ -586,3 +586,7 @@ input {
    background-size:cover;
    opacity : 1
 } 
+
+.unapproved_comments {
+    color: yellow;
+}
