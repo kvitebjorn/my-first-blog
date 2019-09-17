@@ -38,5 +38,5 @@
             </div>
         </div>
     {% endfor %}
-    <p>Only the most recent posts are visible here. Visit the <a href="{% url 'archive_list' %}">archive</a> page to see more.</p>
+    <p>Only the most recent posts are visible here. Visit the <a href="{% url 'archive_list' page=1 %}">archive</a> page to see more.</p>
 {% endblock %}

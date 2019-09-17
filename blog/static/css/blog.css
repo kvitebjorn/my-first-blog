@@ -590,3 +590,14 @@ input {
 .unapproved_comments {
     color: yellow;
 }
+
+.archive_prev_page {
+    text-align: left;
+    float: left;
+    padding-left: 15%;
+}
+
+.archive_next_page {
+    text-align: right;
+    float: right;
+}

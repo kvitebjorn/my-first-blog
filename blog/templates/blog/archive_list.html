@@ -2,16 +2,30 @@
 
 {% block metatags %}
     <meta property="og:description" content="Personlig blogg arkiv" />
-    <meta property="og:url"           content="https://www.serialexperimentskyle.com/archive/" />
-    <meta property="og:title"         content="Serial Experiments Kyle | archive" />
+    <meta property="og:url"           content="https://www.serialexperimentskyle.com/archive/{{ curr_page }}/" />
     <meta property="og:type"          content="website" />
+    
+  {% if curr_page < 10 %}
+      <meta property="og:title"         content="Serial Experiments Kyle | archive:0{{ curr_page }}/" />
+  {% endif %}
+  {% if curr_page > 9 %}
+      <meta property="og:title"         content="Serial Experiments Kyle | archive:{{ curr_page }}/" />
+  {% endif %}
 {% endblock %}
 
 {% block titletag %}
-  <title>Serial Experiments Kyle | archive</title>
+  {% if curr_page < 10 %}
+      <title>Serial Experiments Kyle | archive:0{{ curr_page }}</title>
+  {% endif %}
+  {% if curr_page > 9 %}
+      <title>Serial Experiments Kyle | archive:{{ curr_page }}</title>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+    <h3> archive page {{ curr_page }} </h3>
+    <br>
+    
     {% for post in posts %}
         <div class="post-side-bar">
             <div class="date">
@@ -42,4 +56,22 @@
             </div>
         </div>
     {% endfor %}
+    <div class="archive_page_nums">
+            {% if curr_page > 1 %}
+                <div class="archive_prev_page">
+                    <a href="{% url 'archive_list' page=curr_page|add:"-1" %}" class="top-menu">
+                        <span class="glyphicon glyphicon-arrow-left" title="previous"></span>
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if curr_page|add:"1" <= num_archive_pages %}
+                <div class="archive_next_page">
+                    <a href="{% url 'archive_list' page=curr_page|add:"1" %}" class="top-menu">
+                        <span class="glyphicon glyphicon-arrow-right" title="next"></span>
+                    </a>
+                </div>
+            {% endif %}
+    </div>
+
 {% endblock %}

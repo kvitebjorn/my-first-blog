@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.validators import validate_email
 from django.core.mail import send_mass_mail
+from math import ceil
 
 from .models import Post, Comment, Subscription
 from .forms import PostForm, CommentForm, SubscriptionForm
@@ -51,9 +52,14 @@ def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
-def archive_list(request):
+def archive_list(request, page):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/archive_list.html', {'posts': posts})
+    num_posts_per_page = 10
+    num_archive_pages = ceil(len(posts) / num_posts_per_page)
+    start_idx = (page - 1) * num_posts_per_page;
+    end_idx   = page * num_posts_per_page;
+    posts = posts[start_idx:end_idx]
+    return render(request, 'blog/archive_list.html', {'posts': posts, 'curr_page': page, 'num_archive_pages': num_archive_pages,})
 
 def search(request):
     search_term = ""

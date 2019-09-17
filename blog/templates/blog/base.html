@@ -45,13 +45,13 @@
                     <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit" title="drafts"></span></a>
                     {% endif %}
                     
-                    <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
+                    <a href="{% url 'archive_list' page=1 %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
                     <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search" title="search"></span></a>
                     <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send" title="subscribe"></span></a>
                     <p class="menu-wrapper">Hello, {{ user.username }}! </p>
                 {% else %}
                     <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in" title="login"></span></a>
-                    <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
+                    <a href="{% url 'archive_list' page=1 %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
                     <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search" title="search"></span></a>
                     <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send" title="subscribe"></span></a>
                 {% endif %}
