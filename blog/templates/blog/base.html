@@ -24,17 +24,16 @@
     <body>
         <div class="app">
             <div class="page-header">
-            
                 <div class="title-wrapper">
-                    <div class="glitch-img">
-                        <a href="/">
-                            <div><h1 class="glitch" data-text="serial experiments">serial experiments</h1></div>
-                            <div><p class="sub"><b>kyle</b></p></div>
-                        </a>
+                    <div class="glitch-container">
+                            <div class="glitch-img">
+                                <a href="/">
+                                    <h1 class="glitch" data-text="serial experiments">serial experiments</h1>
+                                    <p class="sub"><b>kyle</b></p>
+                                </a>
+                            </div>
                     </div>
                 </div>
-                
-                <div id="spacer" style="width: 200px; height: 100px; display:inline-block;"></div>
                 
                 <div class="menu-wrapper">
                 {% if user.is_authenticated %}
@@ -49,7 +48,7 @@
                     <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
                     <a href="{% url 'search' %}" class="top-menu"><span class="glyphicon glyphicon-search" title="search"></span></a>
                     <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-send" title="subscribe"></span></a>
-                    <p class="top-menu">Hello, {{ user.username }}! </p>
+                    <p class="menu-wrapper">Hello, {{ user.username }}! </p>
                 {% else %}
                     <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in" title="login"></span></a>
                     <a href="{% url 'archive_list' %}" class="top-menu"><span class="glyphicon glyphicon-list" title="archive"></span></a>
