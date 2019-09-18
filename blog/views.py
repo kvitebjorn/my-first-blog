@@ -8,6 +8,7 @@ from math import ceil
 
 from .models import Post, Comment, Subscription
 from .forms import PostForm, CommentForm, SubscriptionForm
+import constants
 
 # Create your views here.
 
@@ -54,10 +55,9 @@ def post_draft_list(request):
 
 def archive_list(request, page):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    num_posts_per_page = 10
-    num_archive_pages = ceil(len(posts) / num_posts_per_page)
-    start_idx = (page - 1) * num_posts_per_page;
-    end_idx   = page * num_posts_per_page;
+    num_archive_pages = ceil(len(posts) / constants.ARCHIVE_NUM_POSTS_PER_PAGE)
+    start_idx = (page - 1) * constants.ARCHIVE_NUM_POSTS_PER_PAGE;
+    end_idx   = page * constants.ARCHIVE_NUM_POSTS_PER_PAGE;
     posts = posts[start_idx:end_idx]
     return render(request, 'blog/archive_list.html', {'posts': posts, 'curr_page': page, 'num_archive_pages': num_archive_pages,})
 
