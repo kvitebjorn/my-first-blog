@@ -434,6 +434,12 @@ input {
   }
 }
 
+.post_detail_title h4 {
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(100,220,220);
+}
+
 .title-wrapper {
     display: inline-block;
     position: relative;

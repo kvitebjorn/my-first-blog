@@ -22,6 +22,12 @@
 {% endblock %}
 
 {% block content %}
+  {% if post.pk < 10 %}
+      <span class="post_detail_title"><h4 class="glitch" ata-text="Layer:0{{ post.pk }}">Layer:0{{ post.pk }}</h4></span>
+  {% endif %}
+  {% if post.pk > 9 %}
+      <span class="post_detail_title"><h4 class="glitch" data-text="Layer:{{ post.pk }}">Layer:{{ post.pk }}</h4></span>
+  {% endif %}
 
     <div class="post-side-bar">
         {% if post.published_date %}
