@@ -23,7 +23,13 @@
 {% endblock %}
 
 {% block content %}
-    <h3> archive page {{ curr_page }} </h3>
+
+    {% if curr_page < 10 %}
+        <span class="post_detail_title"><h4 class="glitch" data-text="Archive:0{{ curr_page }}">Archive:0{{ curr_page }}</h4></span>
+    {% endif %}
+    {% if curr_page > 9 %}
+        <span class="post_detail_title"><h4 class="glitch" data-text="Archive:{{ curr_page }}">Archive:{{ curr_page }}</h4></span>
+    {% endif %}
     <br>
     
     {% for post in posts %}
