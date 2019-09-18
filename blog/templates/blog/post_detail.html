@@ -96,7 +96,7 @@
     </div>
     
     <hr>
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <a class="comment_button" href="{% url 'add_comment_to_post' pk=post.pk %}"><span class="glyphicon glyphicon-comment" title="comment"> add comment</span></a>
     {% for comment in post.comments.all %}
         {% if user.is_authenticated and post.author == user or user.is_staff or comment.approved_comment %}
         <div class="comment">
