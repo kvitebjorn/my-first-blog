@@ -1,4 +1,5 @@
 from django import forms
+from markdownx.widgets import MarkdownxWidget
 
 from .models import Post, Comment, Subscription
 
@@ -6,7 +7,10 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'outlined_material_icon_name')
+        fields = ('title', 'outlined_material_icon_name', 'text', )
+        widgets = {
+            'text': MarkdownxWidget(attrs={'class':'textarea'}),     
+        }
         
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
@@ -17,6 +21,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('author', 'text',)
+        widgets = {
+            'text': MarkdownxWidget(attrs={'class':'textarea'}),     
+        }
         
     def __init__(self, *args, **kwargs):
         if 'user' in kwargs:

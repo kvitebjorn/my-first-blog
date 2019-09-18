@@ -25,18 +25,20 @@ SECRET_KEY_PATH = os.path.join(ETC_ROOT, 'secret_key.txt')
 with open(SECRET_KEY_PATH) as f:
    SECRET_KEY = f.read().strip()
 
+#### SECURITY STUFF
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'www.serialexperimentskyle.com']
-
-LOGIN_REDIRECT_URL = '/'
 
 # Uncomment for production
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 X_FRAME_OPTIONS = 'DENY'
+#### 
+
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'www.serialexperimentskyle.com']
+
+LOGIN_REDIRECT_URL = '/'
 
 
 # Application definition
@@ -148,6 +150,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
     'markdown.extensions.extra',

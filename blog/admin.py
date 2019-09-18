@@ -5,5 +5,5 @@ from markdownx.admin import MarkdownxModelAdmin
 from .models import Post, Comment, Subscription
 
 admin.site.register(Post, MarkdownxModelAdmin)
-admin.site.register(Comment)
+admin.site.register(Comment, MarkdownxModelAdmin)
 admin.site.register(Subscription)
