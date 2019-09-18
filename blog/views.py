@@ -8,7 +8,7 @@ from math import ceil
 
 from .models import Post, Comment, Subscription
 from .forms import PostForm, CommentForm, SubscriptionForm
-import constants
+from . import constants
 
 # Create your views here.
 
