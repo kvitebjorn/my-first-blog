@@ -25,8 +25,8 @@
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.formatted_markdown|safe }}</p>
             <div class="post-comments">
-                <a href="{% url 'post_detail' pk=post.pk %}">
-                    Comments: {{ post.approved_comments.count }}
+                <a href="{% url 'post_detail' pk=post.pk %}"> <span class="glyphicon glyphicon-comment" title="comment"></span>
+                    {{ post.approved_comments.count }}
                     {% if user.is_authenticated %}
                       {% if post.author == user or user.is_staff %}
                         {% if post.unapproved_comments.count > 0 %}
