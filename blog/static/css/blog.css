@@ -11,6 +11,16 @@
 	overflow-y: scroll;
 }
 
+.main_content {
+    min-height: 90vh;
+}
+
+footer {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
 .page-header {
     background-color: black;
     margin-top: 0;
