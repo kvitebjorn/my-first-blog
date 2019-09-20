@@ -44,6 +44,7 @@ LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'axes',
     'markdownx',
-    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -167,3 +167,4 @@ with open(EMAIL_HOST_PASSWORD_PATH) as f:
    EMAIL_HOST_PASSWORD = f.read().strip()
 EMAIL_USE_TLS = True
 
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
