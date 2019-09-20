@@ -167,4 +167,6 @@ with open(EMAIL_HOST_PASSWORD_PATH) as f:
    EMAIL_HOST_PASSWORD = f.read().strip()
 EMAIL_USE_TLS = True
 
+# Registration stuff
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+DEFAULT_FROM_EMAIL = "registration@serialexperimentskyle.com"
