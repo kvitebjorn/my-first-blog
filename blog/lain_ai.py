@@ -62,7 +62,7 @@ START_TOKEN, END_TOKEN = [tokenizer.vocab_size], [tokenizer.vocab_size + 1]
 VOCAB_SIZE = tokenizer.vocab_size + 2
 
 # Maximum sentence length
-MAX_LENGTH = 999
+MAX_LENGTH = 100
 
 
 # Tokenize, filter and pad sentences
