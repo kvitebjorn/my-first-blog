@@ -1,0 +1,292 @@
+Voice: If you want to avoid pain, you should believe in God.
+
+Voice: Whether you believe in him or not, God is always with you.
+
+
+Title: PROTOCOL Layer 09
+
+
+Narrator: In July 4th, 1947, a strange flying object dropped into a desert in New Mexico, USA.
+
+Narrator: Even now, its identity has not been ascertained.
+
+Narrator: Guesses became facts, and rumors became histories.
+
+
+Lain: Who was it?
+
+Lain: Who was it?
+
+
+Narrator: In 1984, Jaime Shandera, a TV producer, received an undeveloped roll of film in a brown envelope from an anonymous person.
+
+Narrator: In the film was the MJ-12 document.
+
+Narrator: It said that 12 people made a secret pact with an extraterrestrial under the President's direct orders.
+
+Narrator: Roscoe Hillenkoetter, who was the director of the CIA when the Roswell incident happened, was the chief of the 12 people.
+
+Narrator: It is well known now that President Truman's signature was copied from another document.
+
+
+Narrator: Vannevar Bush, who was a Head of Department in MIT, was one of the 12 members of MJ-12.
+
+
+Lain: Connect Wired.
+
+
+Lain(wired): How can you make something that already happened not have happened?
+
+Eye: Are you Lain? I see.
+
+Lain(w): I don't know you, but you know me...
+
+Eye: Information does not always flow both ways.
+
+Eye: You have been here since the Wired was created.
+
+Eye: You are free in here.
+
+Lain(w): But that wasn't me!
+
+Ear: I see, then, since when have we been here?
+
+Ear: I know we didn't start existing at the beginning of this world.
+
+Eye: That's nothing to be concerned about!
+
+Eye: If something exists in memory, then it's part of a record.
+
+Arm: What you said is groundless.
+
+Arm: How old do you think Lain is? She's still a child.
+
+Lain(w): Let's not talk about me right now-
+
+
+Narrator: Vannevar Bush put forward a new plan to extend memories, MEMEX, in 1945.
+
+Narrator: It was a system to view information in microfilm on a translucent screen.
+
+Narrator: He planned to compress information to access it quickly.
+
+Narrator: Bush led the Manhattan Project that produced an atomic bomb.
+
+Narrator: He also made the foundations of multimedia at the same time.
+
+
+JJ: You forgot this.
+
+Lain: What?
+
+JJ: You left this here yesterday.
+
+JJ: I'll dump it if you don't need it.
+
+Lain: Did I leave this?
+
+JJ: That's what I said.
+
+
+Narrator: John C. Lilly explored the human unconscious in an experiment with sensory deprivation by using drugs and an isolation tank.
+
+Narrator: He thought that he was connected to something like an existence in space.
+
+Narrator: He called the existence that led him ECCO, Earth Coincidence Control Office.
+
+Narrator: After that, Lilly began to research dolphins.
+
+Narrator: Dolphins can communicate over long distances in water using ultrasonic waves.
+
+
+Taro: What?
+
+Lain: I promised you.
+
+Taro: What?
+
+Lain: I'll go on a date with you.
+
+Myu-myu: Really? Did you say that?
+
+Taro: Did I promise?
+
+Myu-myu: No, no.
+
+Taro: Even if I did, I don't want to date with the current you, Lain.
+
+Myu-myu: Idiot! Taro!
+
+Lain: She is the same as me. I'm myself. I'm the only one.
+
+
+Taro: Great!
+
+Taro: You made this very well.
+
+Taro: I see. This synchronizes the parallel processors.
+
+Taro: It's not very neat, but you can keep extending it this way.
+
+Taro: How do you cool this?
+
+Lain: Taro.
+
+Taro: Is this liquid carbon?
+
+Lain: Sit there.
+
+Taro: What?
+
+Lain: You know what this is, don't you?
+
+Taro: !
+
+Lain: It was you, Taro, right?
+
+Lain(w): You're one of the Knights, aren't you?
+
+Taro: You're...the real Lain...
+
+Lain(w): I'm not sure if there is another me in the Wired or not.
+
+Lain(w): But in the real world, there is no me other than myself.
+
+Lain(w): The only other me with a body only appeared in the club.
+
+Lain(w): It would have been enough just to modify the memories of people who were there.
+
+Taro: I can't...
+
+Lain(w): Play track 44.
+
+
+Father: It is drawing to a close...
+
+Father: Finally...
+
+Mother: So, before it's too late...
+
+Mika: a.. e..
+
+Mika: Pii Pii Pii... Understood.
+
+Mika: Pii Pii Pii... Now transmitting. Pii Pii Pii...
+
+
+Lain(w): Stop.
+
+Taro: It wasn't me...
+
+Taro: But I know that the data that JJ receives can have such effects.
+
+Lain(w): If I install this chip, what will happen to me?
+
+Lain(w): Would I commit suicide? Or would I go insane?
+
+Taro: I don't know. I'm too young to be a formal member of Knights. I'm only...
+
+Lain(w): What will this do?
+
+Taro: It's nonvolatile memory. It will overwrite existing memories.
+
+Lain(w): What kinds of memories?
+
+Taro: I... I don't know...
+
+Taro: Knights aren't just crackers, Lain.
+
+Taro: Uh...
+
+Taro: You're strange. That's why the Knights are interested in you.
+
+Taro: Knights fight in order to make the only truth become real.
+
+Lain: I don't understand. What's the only truth?
+
+Taro: I've never been told, because I'm not a formal member of Knights.
+
+Taro: But it's true. Truth is strong because it is true.
+
+Taro: Truth is justice because it is true.
+
+Taro: Don't you find it convincing?
+
+Taro: Don't you also want such a truth?
+
+Taro: I'm going back. Myu-myu will be jealous of you.
+
+Lain: Taro, thank you.
+
+Taro: You...
+
+Taro: It's a date, after all. I'm a guy, so I had to do that.
+
+
+Narrator: Ted Nelson, who learned from heretic pioneers Vannevar Bush and John C. Lilly,
+
+Narrator: made a plan for a digital library in orbit that can be used anywhere on earth through electromagnetic waves and a telephone network.
+
+Narrator: It would be a utopia where every text from every culture will exist forever.
+
+Narrator: It is called "Xanadu". Hypertext can make it real in this world.
+
+Narrator: Ted Nelson will go down in history as a proponent of it.
+
+
+Lain: Hello Navi.
+
+Lain: Kachi Kachi...
+
+Sound of machine: Memory check...
+
+Lain: Kachi Kachi...
+
+
+Lain: Was it me?
+
+Lain(past): Yes, it was me.
+
+Lain: Who were those people?
+
+Lain(past): I don't know because I'm you.
+
+Lain: It can't be true...
+
+
+Lain: Everything must be a lie... Why did you do that?
+
+
+Narrator: The earth itself has peculiar electromagnetic waves.
+
+Narrator: There are always resonances between the ground and the ionosphere at 8 Hz in the ELF band. This is called the Schumann Resonance.
+
+Narrator: It is the brain wave of the earth. But we still don't know how it affects humans.
+
+
+Narrator: The human population on Earth is approaching the number of neurons in the brain.
+
+Narrator: Douglas Rushkoff claims that it will awaken the consciousness of Earth itself by connecting humans to each other in a network.
+
+Narrator: The network has quickly grown into a form like the neurons in the brain, so the Earth itself will become a neural network.
+
+
+Lain: The only truth... God.
+
+Deus: Yes, me.
+
+
+Narrator: Eiri Masami was a chief research worker in Tachibana Labs.
+
+Narrator: He caused the theory about Earth's neural network to progress.
+
+Narrator: He advocated that every human's unconscious should be connected to a wireless network without devices through the Schumann effect.
+
+Narrator: He added a function to use the Schumann Resonances to the 7th protocol code on his own discretion.
+
+Narrator: When Tachibana Labs found out, they fired him.
+
+Narrator: One week later, Eiri's corpse was found run over and killed on the railway on Yamanote line.
+
+Newspaper: Mr. Eiri Masami
+
