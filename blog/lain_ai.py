@@ -26,6 +26,10 @@ def preprocess_sentence(sentence):
   
   return sentence
 
+# OK so there are two major problems right now if the goal is to make this a LAIN bot:
+# 1. the data sometimes has multiple Lain statements in a row, so it is not a conversation with another person
+# 2. right now i don't structure all the inputs as Lain-only. I literally just do every other line and call it a conversation
+#    but i'm afraid that without doing this, i won't have enough samples. 
 def load_conversations():
   inputs, outputs = [], []
   
