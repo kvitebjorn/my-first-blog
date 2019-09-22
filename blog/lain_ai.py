@@ -489,7 +489,7 @@ def predict(sentence):
       [i for i in prediction if i < tokenizer.vocab_size])
 
   print('Input: {}'.format(sentence))
-  print('Output: {}'.format(predicted_sentence))
+  print('Lain: {}'.format(predicted_sentence))
 
   return predicted_sentence
 
