@@ -6,9 +6,6 @@ import tensorflow_datasets as tfds
 import os
 import re
 
-
-tf.random.set_seed(1234)
-
 path_to_dataset_root = os.path.join(constants.LAIN_ROOT, 'data')
 
 def preprocess_sentence(sentence):
@@ -444,13 +441,15 @@ learning_rate = CustomSchedule(D_MODEL)
 optimizer = tf.keras.optimizers.Adam(
     learning_rate, beta_1=0.9, beta_2=0.98, epsilon=1e-9)
 
+# TODO: this doesnt seem to work in metrics=[]? using tf.metrics.SparseCategoriccalAccuracy instead for now
+# i think  it's cuz this accuracy function needs to subclass Metric,  'custom metrics' here https://www.tensorflow.org/beta/guide/keras/training_and_evaluation
 def accuracy(y_true, y_pred):
   # ensure labels have shape (batch_size, MAX_LENGTH - 1)
   y_true = tf.reshape(y_true, shape=(-1, MAX_LENGTH - 1))
   accuracy = tf.metrics.SparseCategoricalAccuracy()(y_true, y_pred)
   return accuracy
 
-model.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
+model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
 
 ## FIT MODEL
 EPOCHS = 20
