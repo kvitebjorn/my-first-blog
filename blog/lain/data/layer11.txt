@@ -51,18 +51,18 @@ Text: ... come...
 Eiri: Pity Lain.
 
 
-Lainevil:) Because I am Lain.
+Lainevil: Because I am Lain.
 
-Lainwired:) No!
+Lainwired: No!
 
 Lain: No!
 
 
 Alice: You are right. You are no longer needed in the real world.
 
-Lainevil:) I will kill myself ... hahaha...
+Lainevil: I will kill myself ... hahaha...
 
-Lainwired:) Why? Why is your body warm? Why do I feel your body temperature?
+Lainwired: Why? Why is your body warm? Why do I feel your body temperature?
 
 
 Eiri: Yes, I'm God.
@@ -160,13 +160,13 @@ Chisa: Lain?
 Lain: What is this?
 
 
-JulieNavi:) We will meet him after school tomorrow. He looks pretty good.
+JulieNavi: We will meet him after school tomorrow. He looks pretty good.
 
-JulieNavi:) If you make him your boyfriend, everybody will think that the rumor
+JulieNavi: If you make him your boyfriend, everybody will think that the rumor
 
-JulieNavi:) about the teacher is wrong.
+JulieNavi: about the teacher is wrong.
 
-JulieNavi:) I'll tell you more tomorrow. Bye.
+JulieNavi: I'll tell you more tomorrow. Bye.
 
 Alice: It's true...
 
@@ -176,35 +176,31 @@ Alice: Lain?
 
 Alice: Why? ...because...
 
-Lainsmall:) It was not me.
+Lainsmall: It was not me.
 
-Lains:) I didn't peep your secret. I didn't spread your rumor in wired.
+Lains: I didn't peep your secret. I didn't spread your rumor in wired.
 
 Alice: It was Lain. Lain did. I saw you certainly.
 
-Lains:) It was not me. It seems that there are many "I".
+Lains: It was not me. It seems that there are many "I".
 
-Lains:) The other "I" did.
+Lains: The other "I" did.
 
 Alice: What are you saying?
 
-Lains:) Alice may also be more than one.
+Lains: Alice may also be more than one.
 
-Lains:) But, even if I say no, You still believe so...
+Lains: But, even if I say no, You still believe so...
 
-Lains:) So, I will make it never happened. I made all possible efforts to do
+Lains: So, I will make it never happened. I made all possible efforts to do
 
-Lains:) so.
+Lains: so.
 
 Alice: What do you mean?
 
-Lains:) We need no device any longer. I already broke the border between the
+Lains: We need no device any longer. I already broke the border between the wired and the real world. So, I can go anywhere I want. So, I'm here now.
 
-Lains:) wired and the real world. So, I can go anywhere I want.
-
-Lains:) So, I'm here now.
-
-Lains:) I can make anything which already happened never happened.
+Lains: I can make anything which already happened never happened.
 
 Alice: Lain?
 

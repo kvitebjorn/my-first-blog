@@ -68,9 +68,7 @@ Lain: Who? Who makes the prophecy?
 
 Announce: At various places in Tokyo, the "VTCZX" Traffic Information Service System has sent the wrong information.
 
-Announce: Especially at crowded crossings, the automatic driving programs of cars and trucks interfered with each other and went out
-
-of control.
+Announce: Especially at crowded crossings, the automatic driving programs of cars and trucks interfered with each other and went out of control.
 
 Announce: There was an accident resulting in death at Shibuya, Tokyo.
 
