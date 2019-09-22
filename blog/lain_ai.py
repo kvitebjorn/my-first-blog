@@ -393,7 +393,7 @@ def transformer(vocab_size,
 # TRAIN MODEL: possibly increase num of layers 
 # Hyper-parameters
 tf.keras.backend.clear_session()
-NUM_LAYERS = 2
+NUM_LAYERS = 13
 D_MODEL = 256
 NUM_HEADS = 8
 UNITS = 512
@@ -452,7 +452,7 @@ def accuracy(y_true, y_pred):
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
 
 ## FIT MODEL
-EPOCHS = 20
+EPOCHS = 69
 model.fit(dataset, epochs=EPOCHS)
 
 ## USE THE MODEL
@@ -494,6 +494,7 @@ def predict(sentence):
   return predicted_sentence
 
 output = predict('Who are you?')
-output = predict('Where have you been?')
-output = predict("It's a trap!")
+output = predict('How are you doing?')
+output = predict('Where is the real me?')
 
+tf.saved_model.save(model, "/lain/model/1")
