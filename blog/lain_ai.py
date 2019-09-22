@@ -11,9 +11,7 @@ import matplotlib.pyplot as plt
 
 tf.random.set_seed(1234)
 
-path_to_dataset = os.path.join(constants.LAIN_ROOT, 'data\\layer01.txt')
-print( path_to_dataset )
-print(tf.__version__)
+path_to_dataset_root = os.path.join(constants.LAIN_ROOT, 'data')
 
 def preprocess_sentence(sentence):
   sentence = sentence.lower().strip()
@@ -30,19 +28,24 @@ def preprocess_sentence(sentence):
 
 def load_conversations():
   inputs, outputs = [], []
-  with open(path_to_dataset, 'r') as file:
-    lines = file.readlines()
- 
-  parts = [line for line in lines if line != '\n']
-  conversation = [ re.sub(r"([^:]*):", "", part) for part in parts ]
-    
-  for i in range(len(conversation) - 1):
-    inputs.append(preprocess_sentence(conversation[i]))
-    outputs.append(preprocess_sentence(conversation[i + 1]))
+  
+  for root, dirs, files in os.walk(path_to_dataset_root):
+    for file in files:
+        if file.endswith(".txt"):
+          path_to_dataset = os.path.join(root, file)
+          
+          with open(path_to_dataset, 'r') as file:
+            lines = file.readlines()
+         
+          parts = [line for line in lines if line != '\n']
+          conversation = [ re.sub(r"([^:]*):", "", part) for part in parts ]
+            
+          for i in range(len(conversation) - 1):
+            inputs.append(preprocess_sentence(conversation[i]))
+            outputs.append(preprocess_sentence(conversation[i + 1]))
       
   return inputs, outputs
 
 
 questions, answers = load_conversations()
-print(questions)
-print(answers)
+
