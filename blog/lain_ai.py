@@ -391,7 +391,7 @@ def transformer(vocab_size,
   return tf.keras.Model(inputs=[inputs, dec_inputs], outputs=outputs, name=name)
 
 
-# TRAIN MODEL: possibly increase num of layers 
+# TRAIN MODEL
 # Hyper-parameters
 tf.keras.backend.clear_session()
 NUM_LAYERS = 2
@@ -439,8 +439,10 @@ class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
 ## COMPILE MODEL
 learning_rate = CustomSchedule(D_MODEL)
 
-optimizer = tf.keras.optimizers.Adam(
-    learning_rate, beta_1=0.9, beta_2=0.98, epsilon=1e-9)
+#optimizer = tf.keras.optimizers.Adam(
+#    learning_rate, beta_1=0.9, beta_2=0.98, epsilon=1e-9)
+# learning_rate can't be 'saved' yet cuz it doesnt override get_config or something
+optimizer = tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9)
 
 # TODO: this doesnt seem to work in metrics=[]? using tf.metrics.SparseCategoriccalAccuracy instead for now
 # i think  it's cuz this accuracy function needs to subclass Metric,  'custom metrics' here https://www.tensorflow.org/beta/guide/keras/training_and_evaluation
@@ -453,7 +455,7 @@ def accuracy(y_true, y_pred):
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
 
 ## FIT MODEL - probably increase this later
-EPOCHS = 30
+EPOCHS = 60
 model.fit(dataset, epochs=EPOCHS)
 
 ## USE THE MODEL
@@ -498,4 +500,5 @@ output = predict('Who are you?')
 output = predict('How are you doing?')
 output = predict('Where is the real me?')
 
-tf.saved_model.save(model, "/lain/model/1")
+save_path = os.path.join(constants.LAIN_ROOT, 'model/1')
+tf.saved_model.save(model, save_path)
