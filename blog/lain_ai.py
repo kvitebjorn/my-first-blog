@@ -451,8 +451,8 @@ def accuracy(y_true, y_pred):
 
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
 
-## FIT MODEL
-EPOCHS = 60
+## FIT MODEL - probably increase this later
+EPOCHS = 20
 model.fit(dataset, epochs=EPOCHS)
 
 ## USE THE MODEL
