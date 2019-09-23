@@ -61,8 +61,9 @@ START_TOKEN, END_TOKEN = [tokenizer.vocab_size], [tokenizer.vocab_size + 1]
 # Vocabulary size plus start and end token
 VOCAB_SIZE = tokenizer.vocab_size + 2
 
+# TODO: probably set this higher later, like 100
 # Maximum sentence length
-MAX_LENGTH = 100
+MAX_LENGTH = 40
 
 
 # Tokenize, filter and pad sentences
@@ -393,7 +394,7 @@ def transformer(vocab_size,
 # TRAIN MODEL: possibly increase num of layers 
 # Hyper-parameters
 tf.keras.backend.clear_session()
-NUM_LAYERS = 6
+NUM_LAYERS = 2
 D_MODEL = 256
 NUM_HEADS = 8
 UNITS = 512
@@ -452,7 +453,7 @@ def accuracy(y_true, y_pred):
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
 
 ## FIT MODEL - probably increase this later
-EPOCHS = 20
+EPOCHS = 30
 model.fit(dataset, epochs=EPOCHS)
 
 ## USE THE MODEL
