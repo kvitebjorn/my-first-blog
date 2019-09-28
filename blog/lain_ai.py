@@ -6,7 +6,21 @@ import tensorflow_datasets as tfds
 import os
 import re
 
-path_to_dataset_root = os.path.join(constants.LAIN_ROOT, 'data')
+# Hyper-parameters
+NUM_LAYERS = 2
+D_MODEL = 256
+NUM_HEADS = 8
+UNITS = 512
+DROPOUT = 0.1
+
+# Maximum sentence length
+MAX_LENGTH = 40
+
+BATCH_SIZE = 64
+BUFFER_SIZE = 20000
+
+PATH_TO_DATASET_ROOT = os.path.join(constants.LAIN_ROOT, 'data')
+WEIGHTS_PATH = os.path.join(constants.LAIN_ROOT, 'model\\1\\weights.h5')
 
 def preprocess_sentence(sentence):
   sentence = sentence.lower().strip()
@@ -21,97 +35,6 @@ def preprocess_sentence(sentence):
   
   return sentence
 
-# TODO
-# OK so there are two major problems right now if the goal is to make this a LAIN bot:
-# 1. the data sometimes has multiple Lain statements in a row, so it is not a conversation with another person
-# 2. right now i don't structure all the inputs as Lain-only. I literally just do every other line and call it a conversation
-#    but i'm afraid that without doing this, i won't have enough samples. If i want to make it very Lain specific,
-#    I'd have to introduce the constraint that all 'answers' must be Lain-only dialogue, and all questions must be
-#    the immediate statement before her dialogue. But i'm too lazy right now. Maybe i'll do it later.
-def load_conversations():
-  inputs, outputs = [], []
-  
-  for root, dirs, files in os.walk(path_to_dataset_root):
-    for file in files:
-        if file.endswith(".txt"):
-          path_to_dataset = os.path.join(root, file)
-          
-          with open(path_to_dataset, 'r') as file:
-            lines = file.readlines()
-         
-          parts = [line for line in lines if line != '\n']
-          conversation = [ re.sub(r"([^:]*):", "", part) for part in parts ]
-            
-          for i in range(len(conversation) - 1):
-            inputs.append(preprocess_sentence(conversation[i]))
-            outputs.append(preprocess_sentence(conversation[i + 1]))
-      
-  return inputs, outputs
-
-
-questions, answers = load_conversations()
-
-# Build tokenizer using tfds for both questions and answers
-tokenizer = tfds.features.text.SubwordTextEncoder.build_from_corpus(
-    questions + answers, target_vocab_size=2**13)
-
-# Define start and end token to indicate the start and end of a sentence
-START_TOKEN, END_TOKEN = [tokenizer.vocab_size], [tokenizer.vocab_size + 1]
-
-# Vocabulary size plus start and end token
-VOCAB_SIZE = tokenizer.vocab_size + 2
-
-# TODO: probably set this higher later, like 100
-# Maximum sentence length
-MAX_LENGTH = 40
-
-
-# Tokenize, filter and pad sentences
-def tokenize_and_filter(inputs, outputs):
-  tokenized_inputs, tokenized_outputs = [], []
-  
-  for (sentence1, sentence2) in zip(inputs, outputs):
-    # tokenize sentence
-    sentence1 = START_TOKEN + tokenizer.encode(sentence1) + END_TOKEN
-    sentence2 = START_TOKEN + tokenizer.encode(sentence2) + END_TOKEN
-    # check tokenized sentence max length
-    if len(sentence1) <= MAX_LENGTH and len(sentence2) <= MAX_LENGTH:
-      tokenized_inputs.append(sentence1)
-      tokenized_outputs.append(sentence2)
-  
-  # pad tokenized sentences
-  tokenized_inputs = tf.keras.preprocessing.sequence.pad_sequences(
-      tokenized_inputs, maxlen=MAX_LENGTH, padding='post')
-  tokenized_outputs = tf.keras.preprocessing.sequence.pad_sequences(
-      tokenized_outputs, maxlen=MAX_LENGTH, padding='post')
-  
-  return tokenized_inputs, tokenized_outputs
-
-
-questions, answers = tokenize_and_filter(questions, answers)
-
-print('Vocab size: {}'.format(VOCAB_SIZE))
-print('Number of samples: {}'.format(len(questions)))
-
-BATCH_SIZE = 64
-BUFFER_SIZE = 20000
-
-# decoder inputs use the previous target as input
-# remove START_TOKEN from targets
-dataset = tf.data.Dataset.from_tensor_slices((
-    {
-        'inputs': questions,
-        'dec_inputs': answers[:, :-1]
-    },
-    {
-        'outputs': answers[:, 1:]
-    },
-))
-
-dataset = dataset.cache()
-dataset = dataset.shuffle(BUFFER_SIZE)
-dataset = dataset.batch(BATCH_SIZE)
-dataset = dataset.prefetch(tf.data.experimental.AUTOTUNE)
 
 def scaled_dot_product_attention(query, key, value, mask):
   """Calculate the attention weights. """
@@ -209,8 +132,10 @@ class PositionalEncoding(tf.keras.layers.Layer):
         position=tf.range(position, dtype=tf.float32)[:, tf.newaxis],
         i=tf.range(d_model, dtype=tf.float32)[tf.newaxis, :],
         d_model=d_model)
+    
     # apply sin to even index in the array
     sines = tf.math.sin(angle_rads[:, 0::2])
+    
     # apply cos to odd index in the array
     cosines = tf.math.cos(angle_rads[:, 1::2])
 
@@ -220,6 +145,8 @@ class PositionalEncoding(tf.keras.layers.Layer):
 
   def call(self, inputs):
     return inputs + self.pos_encoding[:, :tf.shape(inputs)[1], :]
+
+
 
 def encoder_layer(units, d_model, num_heads, dropout, name="encoder_layer"):
   inputs = tf.keras.Input(shape=(None, d_model), name="inputs")
@@ -358,11 +285,13 @@ def transformer(vocab_size,
   enc_padding_mask = tf.keras.layers.Lambda(
       create_padding_mask, output_shape=(1, 1, None),
       name='enc_padding_mask')(inputs)
+  
   # mask the future tokens for decoder inputs at the 1st attention block
   look_ahead_mask = tf.keras.layers.Lambda(
       create_look_ahead_mask,
       output_shape=(1, None, None),
       name='look_ahead_mask')(dec_inputs)
+  
   # mask the encoder outputs for the 2nd attention block
   dec_padding_mask = tf.keras.layers.Lambda(
       create_padding_mask, output_shape=(1, 1, None),
@@ -391,114 +320,102 @@ def transformer(vocab_size,
   return tf.keras.Model(inputs=[inputs, dec_inputs], outputs=outputs, name=name)
 
 
-# TRAIN MODEL
-# Hyper-parameters
-tf.keras.backend.clear_session()
-NUM_LAYERS = 2
-D_MODEL = 256
-NUM_HEADS = 8
-UNITS = 512
-DROPOUT = 0.1
+class Lain():
 
-model = transformer(
-    vocab_size=VOCAB_SIZE,
-    num_layers=NUM_LAYERS,
-    units=UNITS,
-    d_model=D_MODEL,
-    num_heads=NUM_HEADS,
-    dropout=DROPOUT)
+    def __init__(self):    
+        self.questions, self.answers = self.load_conversations()
+        
+        # Build tokenizer using tfds for both questions and answers
+        self.tokenizer = tfds.features.text.SubwordTextEncoder.build_from_corpus(
+          self.questions + self.answers, target_vocab_size=2**13)
+        
+        # Define start and end token to indicate the start and end of a sentence
+        self.START_TOKEN, self.END_TOKEN = [self.tokenizer.vocab_size], [self.tokenizer.vocab_size + 1]
+        
+        # Vocabulary size plus start and end token
+        self.VOCAB_SIZE = self.tokenizer.vocab_size + 2
+        self.tokenized_questions, self.tokenized_answers = self.tokenize_and_filter(self.questions, self.answers)
 
-def loss_function(y_true, y_pred):
-  y_true = tf.reshape(y_true, shape=(-1, MAX_LENGTH - 1))
-  
-  loss = tf.keras.losses.SparseCategoricalCrossentropy(
-      from_logits=True, reduction='none')(y_true, y_pred)
-
-  mask = tf.cast(tf.not_equal(y_true, 0), tf.float32)
-  loss = tf.multiply(loss, mask)
-
-  return tf.reduce_mean(loss)
-
-class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
-
-  def __init__(self, d_model, warmup_steps=4000):
-    super(CustomSchedule, self).__init__()
-
-    self.d_model = d_model
-    self.d_model = tf.cast(self.d_model, tf.float32)
-
-    self.warmup_steps = warmup_steps
-
-  def __call__(self, step):
-    arg1 = tf.math.rsqrt(step)
-    arg2 = step * (self.warmup_steps**-1.5)
-
-    return tf.math.rsqrt(self.d_model) * tf.math.minimum(arg1, arg2)
-
-
-## COMPILE MODEL
-learning_rate = CustomSchedule(D_MODEL)
-
-#optimizer = tf.keras.optimizers.Adam(
-#    learning_rate, beta_1=0.9, beta_2=0.98, epsilon=1e-9)
-# learning_rate can't be 'saved' yet cuz it doesnt override get_config or something
-optimizer = tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9)
-
-# TODO: this doesnt seem to work in metrics=[]? using tf.metrics.SparseCategoriccalAccuracy instead for now
-# i think  it's cuz this accuracy function needs to subclass Metric,  'custom metrics' here https://www.tensorflow.org/beta/guide/keras/training_and_evaluation
-def accuracy(y_true, y_pred):
-  # ensure labels have shape (batch_size, MAX_LENGTH - 1)
-  y_true = tf.reshape(y_true, shape=(-1, MAX_LENGTH - 1))
-  accuracy = tf.metrics.SparseCategoricalAccuracy()(y_true, y_pred)
-  return accuracy
-
-model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
-
-## FIT MODEL - probably increase this later
-EPOCHS = 1000
-model.fit(dataset, epochs=EPOCHS)
-
-## USE THE MODEL
-def evaluate(sentence):
-  sentence = preprocess_sentence(sentence)
-
-  sentence = tf.expand_dims(
-      START_TOKEN + tokenizer.encode(sentence) + END_TOKEN, axis=0)
-
-  output = tf.expand_dims(START_TOKEN, 0)
-
-  for i in range(MAX_LENGTH):
-    predictions = model(inputs=[sentence, output], training=False)
-
-    # select the last word from the seq_len dimension
-    predictions = predictions[:, -1:, :]
-    predicted_id = tf.cast(tf.argmax(predictions, axis=-1), tf.int32)
-
-    # return the result if the predicted_id is equal to the end token
-    if tf.equal(predicted_id, END_TOKEN[0]):
-      break
-
-    # concatenated the predicted_id to the output which is given to the decoder
-    # as its input.
-    output = tf.concat([output, predicted_id], axis=-1)
-
-  return tf.squeeze(output, axis=0)
-
-
-def predict(sentence):
-  prediction = evaluate(sentence)
-
-  predicted_sentence = tokenizer.decode(
-      [i for i in prediction if i < tokenizer.vocab_size])
-
-  print('Input: {}'.format(sentence))
-  print('Lain: {}'.format(predicted_sentence))
-
-  return predicted_sentence
-
-output = predict('Who are you?')
-output = predict('How are you doing?')
-output = predict('Where is the real me?')
-
-save_path = os.path.join(constants.LAIN_ROOT, 'model/1')
-tf.saved_model.save(model, save_path)
+    def load_conversations(self):
+      # OK so there are two major problems right now if the goal is to make this a LAIN bot:
+      # 1. the data sometimes has multiple Lain statements in a row, so it is not a conversation with another person
+      # 2. right now i don't structure all the inputs as Lain-only. I literally just do every other line and call it a conversation
+      #    but i'm afraid that without doing this, i won't have enough samples. If i want to make it very Lain specific,
+      #    I'd have to introduce the constraint that all 'answers' must be Lain-only dialogue, and all questions must be
+      #    the immediate statement before her dialogue. But i'm too lazy right now. Maybe i'll do it later.
+      inputs, outputs = [], []
+      
+      for root, dirs, files in os.walk(PATH_TO_DATASET_ROOT):
+        for file in files:
+            if file.endswith(".txt"):
+              path_to_dataset = os.path.join(root, file)
+              
+              with open(path_to_dataset, 'r') as file:
+                lines = file.readlines()
+             
+              parts = [line for line in lines if line != '\n']
+              conversation = [ re.sub(r"([^:]*):", "", part) for part in parts ]
+                
+              for i in range(len(conversation) - 1):
+                inputs.append(preprocess_sentence(conversation[i]))
+                outputs.append(preprocess_sentence(conversation[i + 1]))
+          
+      return inputs, outputs
+    
+    # Tokenize, filter and pad sentences
+    def tokenize_and_filter(self, inputs, outputs):
+      tokenized_inputs, tokenized_outputs = [], []
+      
+      for (sentence1, sentence2) in zip(inputs, outputs):
+        # tokenize sentence
+        sentence1 = self.START_TOKEN + self.tokenizer.encode(sentence1) + self.END_TOKEN
+        sentence2 = self.START_TOKEN + self.tokenizer.encode(sentence2) + self.END_TOKEN
+        # check tokenized sentence max length
+        if len(sentence1) <= MAX_LENGTH and len(sentence2) <= MAX_LENGTH:
+          tokenized_inputs.append(sentence1)
+          tokenized_outputs.append(sentence2)
+      
+      # pad tokenized sentences
+      tokenized_inputs = tf.keras.preprocessing.sequence.pad_sequences(
+          tokenized_inputs, maxlen=MAX_LENGTH, padding='post')
+      tokenized_outputs = tf.keras.preprocessing.sequence.pad_sequences(
+          tokenized_outputs, maxlen=MAX_LENGTH, padding='post')
+      
+      return tokenized_inputs, tokenized_outputs
+      
+    def evaluate(self, model, sentence):
+      sentence = preprocess_sentence(sentence)
+    
+      sentence = tf.expand_dims(
+          self.START_TOKEN + self.tokenizer.encode(sentence) + self.END_TOKEN, axis=0)
+    
+      output = tf.expand_dims(self.START_TOKEN, 0)
+    
+      for i in range(MAX_LENGTH):
+        predictions = model(inputs=[sentence, output], training=False)
+    
+        # select the last word from the seq_len dimension
+        predictions = predictions[:, -1:, :]
+        predicted_id = tf.cast(tf.argmax(predictions, axis=-1), tf.int32)
+    
+        # return the result if the predicted_id is equal to the end token
+        if tf.equal(predicted_id, self.END_TOKEN[0]):
+          break
+    
+        # concatenated the predicted_id to the output which is given to the decoder
+        # as its input.
+        output = tf.concat([output, predicted_id], axis=-1)
+    
+      return tf.squeeze(output, axis=0)
+    
+    
+    def predict(self, model, sentence):
+      prediction = self.evaluate(model, sentence)
+    
+      predicted_sentence = self.tokenizer.decode(
+          [i for i in prediction if i < self.tokenizer.vocab_size])
+    
+      print('Input: {}'.format(sentence))
+      print('Lain: {}'.format(predicted_sentence))
+    
+      return predicted_sentence
