@@ -71,7 +71,7 @@ optimizer = tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9)
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[ tf.metrics.SparseCategoricalAccuracy() ])
 
 ## FIT MODEL - probably increase this later
-EPOCHS = 1000
+EPOCHS = 10000
 model.fit(dataset, epochs=EPOCHS)
 
 output = lain_data.predict(model, 'Who are you?')
